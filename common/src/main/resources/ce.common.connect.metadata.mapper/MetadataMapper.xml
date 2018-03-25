@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+    This mapper is being configured for the lifecycle of janitors.
+    Processes with other lifecycles may want to use a different mapper.
+-->
+<mapper namespace="cp.metadata.MetadataMapper">
+    <!--<cache type="org.mybatis.caches.ehcache.EhcacheCache" />-->
+    <cache />
+
+    <select id="getNextUserId" resultType="long">
+        SELECT NEXTVAL('user_id_sequence');
+    </select>
+
+</mapper>

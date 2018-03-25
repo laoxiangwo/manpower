@@ -1,0 +1,21 @@
+{
+	"table" : "vote_history_observed",
+	"map": {
+		"VOTEHISTORY_ROWID":"rowid",
+		"STATE":"state",
+		"VOTEHISTORY_LINENUMBER": "line_number",
+		"DIFFID":"diffId",
+		"FIRST_NAME":"firstname",
+		"ELECTION_DATE" :"electiondate",
+		"ELECTION_TYPE" : "electiontype",
+		"ELECTION_DESCRIPTION" : "electiondescription",
+		"VOTE_METHOD" : "VoteMethod",
+		"PARTISANSHIP" : "partisanship",
+		"BALLOT_PREPARED" :  "ballotprepared",
+		"BALLOT_SENT" :  "ballotsent",
+		"BALLOT_RECEIVED" : "ballotreceived",
+		"ROWID":"person_rowid",
+		"DWID":"dwid",
+		"RUNID":"runid"
+	}
+}

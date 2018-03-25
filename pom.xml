@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>us.manpower</groupId>
+    <artifactId>manPower</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>common</module>
+        <module>services</module>
+        <module>loader</module>
+        <module>export</module>
+        <module>webapp</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Core dependencies -->
+        <java.version>1.8</java.version>
+        <slf4j.version>1.7.12</slf4j.version>
+        <guava.version>18.0</guava.version>
+        <jsr305.version>3.0.0</jsr305.version>
+        <vertica.version>7.1.1</vertica.version>
+        <postgres.version>9.4-1201-jdbc41</postgres.version>
+
+        <dagger.version>1.2.2</dagger.version>
+        <guice.version>4.0</guice.version>
+        <datastax.version>2.1.6</datastax.version>
+        <snappy.version>1.1.1.7</snappy.version>
+        <lz4.version>1.3</lz4.version>
+        <joda.version>2.8.1</joda.version>
+        <jnr.version>1.0-SNAPSHOT</jnr.version>
+        <cxf.version>3.0.5</cxf.version>
+        <cli.version>1.3</cli.version>
+        <opencsv.version>2.4-SNAPSHOT</opencsv.version>
+        <log4j.version>1.2.17</log4j.version>
+        <jython.version>2.7.0</jython.version>
+        <orgjson.version>20140107</orgjson.version>
+
+        <kafka.version>0.8.2.0</kafka.version>
+        <zkclient.version>0.4</zkclient.version>
+        <zookeeper.version>3.4.5</zookeeper.version>
+        <oozie-client.version>4.1.0-cdh5.4.5</oozie-client.version>
+        <spark.version>1.3.0</spark.version>
+        <hadoop.version>2.6.0</hadoop.version>
+
+        <!-- Test dependencies -->
+        <assertj.version>3.1.0</assertj.version>
+        <testng.version>6.9.4</testng.version>
+        <mockito.version>2.0.23-beta</mockito.version>
+        <junit.version>4.12</junit.version>
+        <cucumber.version>1.2.2</cucumber.version>
+        <args4j.version>2.32</args4j.version>
+
+        <curator-test.version>2.7.1</curator-test.version>
+
+        <mybatis.version>3.3.0</mybatis.version>
+        <hsqldb.version>2.3.2</hsqldb.version>
+        <javassist.version>3.20.0-GA</javassist.version>
+        <ehcache.version>2.6.11</ehcache.version>
+        <mybatis-ehcache.version>1.0.3</mybatis-ehcache.version>
+        <tomcat-jdbc.version>8.0.23</tomcat-jdbc.version>
+        <json.version>20140107</json.version>
+    </properties>
+
+    <!--
+    Use these commands to check all project dependencies for new updates automatically:
+
+    mvn versions:display-dependency-updates
+    mvn versions:display-plugin-updates
+    -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>args4j</groupId>
+            <artifactId>args4j</artifactId>
+            <version>${args4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>${mybatis.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- spring-context which provides core functionality -->
+     <!--   <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>4.1.6.RELEASE</version>
+        </dependency>
+
+        &lt;!&ndash; The spring-aop module provides an AOP Alliance-compliant aspect-oriented
+            programming implementation allowing you to define &ndash;&gt;
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>4.1.6.RELEASE</version>
+        </dependency>
+
+        &lt;!&ndash; The spring-webmvc module (also known as the Web-Servlet module) contains
+            Spring’s model-view-controller (MVC) and REST Web Services implementation
+            for web applications &ndash;&gt;
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>4.1.6.RELEASE</version>
+        </dependency>
+
+        &lt;!&ndash; The spring-web module provides basic web-oriented integration features
+            such as multipart file upload functionality and the initialization of the
+            IoC container using Servlet listeners and a web-oriented application context &ndash;&gt;
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>4.1.6.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+        </dependency>-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.3</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <optimize>true</optimize>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test*.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/CucumberTest*.java</exclude>
+                    </excludes>
+                    <systemPropertyVariables>
+                        <DEPLOYMENT_ENV>dev</DEPLOYMENT_ENV>
+                    </systemPropertyVariables>
+                    <argLine>-Xms64m -Xmx864m -Djava.awt.headless=true -XX:MaxPermSize=364m -Xverify:none</argLine>
+                    <parallel>methods</parallel>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <compress>true</compress>
+                        <index>true</index>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.2</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.scm</groupId>
+                        <artifactId>maven-scm-provider-gitexe</artifactId>
+                        <version>1.9.4</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-archetype-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
